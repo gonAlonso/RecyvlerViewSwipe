@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,8 +20,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SelectMode {
     final static String REQUEST_RESULT = "NAME";
-    MyAdapter2 myAdapter = null;
+    MyAdapter3 myAdapter = null;
     ActionMode mActionMode;
+    private RecyclerTouchListener touchListener;
 
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
         @Override
@@ -71,13 +73,52 @@ public class MainActivity extends AppCompatActivity implements SelectMode {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         // asigna el layout al recyclerView
         recyclerView.setLayoutManager(linearLayoutManager);
-        //myAdapter = new MyAdapter(list);
-        myAdapter = new MyAdapter2(list, this);
+
+        //myAdapter = new MyAdapter2(list, this);
+        myAdapter = new MyAdapter3(list, this);
         recyclerView.setAdapter(myAdapter);
 
-        SwipeController swipeController = new SwipeController();
+        /*
+        final SwipeController swipeController = new SwipeController();
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(recyclerView);
+        */
+        touchListener = new RecyclerTouchListener(this, recyclerView);
+        touchListener
+                .setClickable(new RecyclerTouchListener.OnRowClickListener() {
+                    @Override
+                    public void onRowClicked(int position) {
+                        //Toast.makeText(getApplicationContext(),taskList.get(position).getName(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"RowClicked",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onIndependentViewClicked(int independentViewID, int position) {
+
+                    }
+                })
+                .setSwipeOptionViews(R.id.delete_task,R.id.edit_task)
+                .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
+                    @Override
+                    public void onSwipeOptionClicked(int viewID, int position) {
+                        switch (viewID){
+                            case R.id.delete_task:
+                                //taskList.remove(position);
+                                //recyclerviewAdapter.setTaskList(taskList);
+                                break;
+                            case R.id.edit_task:
+                                Toast.makeText(getApplicationContext(),"Edit Not Available",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                    }
+                });
     }
 
     public void addElementView(View v){

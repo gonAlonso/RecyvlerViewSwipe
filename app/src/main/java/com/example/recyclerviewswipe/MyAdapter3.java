@@ -10,15 +10,14 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 
-public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder>
-        implements SelectMode {  //Added implements
+public class MyAdapter3 extends RecyclerView.Adapter<MyAdapter3.MyViewHolder> implements SelectMode {  //Added implements
 
     private SelectMode mListener;
     private List<String> nameList;
     //Added following list
     private SparseArray<Boolean> selectedList = new SparseArray<>();
 
-    public MyAdapter2(List<String> list, SelectMode listener) { //Added listener to parameters
+    public MyAdapter3(List<String> list, SelectMode listener) { //Added listener to parameters
         nameList = list;
         mListener=listener;
     }
@@ -26,7 +25,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder>
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view =  LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item, parent, false);
+                .inflate(R.layout.item3, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
@@ -93,7 +92,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder>
 
         public MyViewHolder(View itemVieww) {
             super(itemVieww);
-            textView = itemView.findViewById(R.id.name);
+            textView = itemView.findViewById(R.id.task_name);
         }
     }
 
