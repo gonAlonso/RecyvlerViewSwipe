@@ -78,47 +78,12 @@ public class MainActivity extends AppCompatActivity implements SelectMode {
         myAdapter = new MyAdapter3(list, this);
         recyclerView.setAdapter(myAdapter);
 
-        /*
-        final SwipeController swipeController = new SwipeController();
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                swipeController.onDraw(c);
-            }
-        });
+
+        //final SwipeController swipeController = new SwipeController();
+        SwipeActionHelper swipeController = new SwipeActionHelper(myAdapter);
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(recyclerView);
-        */
-        touchListener = new RecyclerTouchListener(this, recyclerView);
-        touchListener
-                .setClickable(new RecyclerTouchListener.OnRowClickListener() {
-                    @Override
-                    public void onRowClicked(int position) {
-                        //Toast.makeText(getApplicationContext(),taskList.get(position).getName(),Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplicationContext(),"RowClicked",Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onIndependentViewClicked(int independentViewID, int position) {
-
-                    }
-                })
-                .setSwipeOptionViews(R.id.delete_task,R.id.edit_task)
-                .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
-                    @Override
-                    public void onSwipeOptionClicked(int viewID, int position) {
-                        switch (viewID){
-                            case R.id.delete_task:
-                                //taskList.remove(position);
-                                //recyclerviewAdapter.setTaskList(taskList);
-                                break;
-                            case R.id.edit_task:
-                                Toast.makeText(getApplicationContext(),"Edit Not Available",Toast.LENGTH_SHORT).show();
-                                break;
-
-                        }
-                    }
-                });
     }
 
     public void addElementView(View v){

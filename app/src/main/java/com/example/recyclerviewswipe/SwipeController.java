@@ -63,10 +63,7 @@ class SwipeController extends Callback {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
-    public void onDraw(Canvas c){}
-
-
-    private void setTouchListener(final Canvas c,
+     private void setTouchListener(final Canvas c,
                                   final RecyclerView recyclerView,
                                   final RecyclerView.ViewHolder viewHolder,
                                   final float dX, final float dY,

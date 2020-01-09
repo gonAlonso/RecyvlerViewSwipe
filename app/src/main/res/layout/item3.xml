@@ -9,7 +9,7 @@ android:orientation="vertical">
     android:id="@+id/rowBG"
     android:layout_width="wrap_content"
     android:layout_height="60dp"
-    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
     android:gravity="right"
     android:padding="10dp"
     android:background="#d65819"
@@ -36,7 +36,7 @@ android:orientation="vertical">
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_action_delete"
-                android:tint="@android:color/white"/>
+                android:tint="@android:color/black"/>
         </LinearLayout>
     </RelativeLayout>
 
@@ -61,7 +61,7 @@ android:orientation="vertical">
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_action_delete"
-                android:tint="@android:color/white"/>
+                android:tint="@android:color/holo_red_light"/>
         </LinearLayout>
     </RelativeLayout>
 

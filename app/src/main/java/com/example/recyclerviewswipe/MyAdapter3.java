@@ -63,6 +63,9 @@ public class MyAdapter3 extends RecyclerView.Adapter<MyAdapter3.MyViewHolder> im
         nameList.remove(position);
         notifyDataSetChanged();
     }
+    public void deleteItem(int pos){
+        remove(pos);
+    }
 
     //New method
     public void deleteAllSelected() {
@@ -95,11 +98,7 @@ public class MyAdapter3 extends RecyclerView.Adapter<MyAdapter3.MyViewHolder> im
             textView = itemView.findViewById(R.id.task_name);
         }
     }
-
-
-
 }
-
 
 
 
